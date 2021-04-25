@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2021 at 12:55 PM
+-- Generation Time: Apr 25, 2021 at 09:26 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -39,13 +39,6 @@ CREATE TABLE `tbl_disposisi` (
   `notif` enum('1','0') NOT NULL DEFAULT '0',
   `status_wa` enum('Terkirim','Gagal','Tertunda','Belum Dikirim') NOT NULL DEFAULT 'Belum Dikirim'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_disposisi`
---
-
-INSERT INTO `tbl_disposisi` (`id_disposisi`, `tujuan`, `isi_disposisi`, `sifat`, `batas_waktu`, `catatan`, `id_surat`, `id_user`, `notif`, `status_wa`) VALUES
-(9, ' 9', 'as', 'Biasa', '2021-03-25', 'asa', 1, 1, '1', 'Terkirim');
 
 -- --------------------------------------------------------
 
@@ -98,7 +91,7 @@ CREATE TABLE `tbl_sett` (
   `id_sett` tinyint(1) NOT NULL,
   `surat_masuk` tinyint(2) NOT NULL,
   `surat_keluar` tinyint(2) NOT NULL,
-  `referensi` tinyint(2) NOT NULL,
+  `klasifikasi` tinyint(2) NOT NULL,
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -106,8 +99,8 @@ CREATE TABLE `tbl_sett` (
 -- Dumping data for table `tbl_sett`
 --
 
-INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `referensi`, `id_user`) VALUES
-(1, 10, 5, 10, 1);
+INSERT INTO `tbl_sett` (`id_sett`, `surat_masuk`, `surat_keluar`, `klasifikasi`, `id_user`) VALUES
+(1, 10, 10, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -129,14 +122,6 @@ CREATE TABLE `tbl_surat_keluar` (
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tbl_surat_keluar`
---
-
-INSERT INTO `tbl_surat_keluar` (`id_surat`, `no_agenda`, `tujuan`, `no_surat`, `isi`, `kode`, `tgl_surat`, `tgl_catat`, `file`, `keterangan`, `id_user`) VALUES
-(1, 1, 'asas', 'wq', 'sasas', 'as', '2021-03-11', '2021-03-10', '', 'asas', 1),
-(2, 2, 'sds', '1213', 'dsd', 'asd', '2021-03-11', '2021-03-10', '', 'sdsd', 5);
-
 -- --------------------------------------------------------
 
 --
@@ -157,13 +142,6 @@ CREATE TABLE `tbl_surat_masuk` (
   `keterangan` varchar(250) NOT NULL,
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_surat_masuk`
---
-
-INSERT INTO `tbl_surat_masuk` (`id_surat`, `no_agenda`, `no_surat`, `asal_surat`, `isi`, `kode`, `indeks`, `tgl_surat`, `tgl_diterima`, `file`, `keterangan`, `id_user`) VALUES
-(1, 1, '1213', 'Kabim', 'asdasd', '3435', 'asa', '2021-03-08', '2021-03-09', '7313-WhatsApp Image 2021-03-09 at 12.58.00.jpeg', 'asa', 5);
 
 -- --------------------------------------------------------
 
@@ -252,7 +230,7 @@ ALTER TABLE `tbl_disposisi`
 -- AUTO_INCREMENT for table `tbl_klasifikasi`
 --
 ALTER TABLE `tbl_klasifikasi`
-  MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
@@ -264,7 +242,7 @@ ALTER TABLE `tbl_surat_keluar`
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`

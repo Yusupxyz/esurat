@@ -233,8 +233,20 @@
                             <label for="no_agenda">Nomor Agenda</label>
                         </div>
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data klasifikasi kode klasifikasi">
-                            <i class="material-icons prefix md-prefix">bookmark</i>
-                            <input id="kode" type="text" class="validate" name="kode" value="<?php echo $kode ;?>" required>
+                                        <i class="material-icons prefix md-prefix">bookmark</i><label>Kode Klasifikasi</label><br/>
+                                        <div class="input-field col s11 right">
+                            <select class="validate" name="kode" id="kode" required>
+                                <option disabled selected> Pilih </option>
+                                <?php 
+                                $sql=mysqli_query($config,"SELECT * FROM tbl_klasifikasi");
+                                while ($data=mysqli_fetch_array($sql)) {
+                                    ?>
+                                    <option value="<?=$data['id_klasifikasi']?>" selected="<?=$data['id_klasifikasi']==$kode?'Selected':''; ?>"><?=$data['kode']?></option> 
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                            </div>
                                 <?php
                                     if(isset($_SESSION['ekode'])){
                                         $ekode = $_SESSION['ekode'];
@@ -242,7 +254,6 @@
                                         unset($_SESSION['ekode']);
                                     }
                                 ?>
-                            <label for="kode">Kode Klasifikasi</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">place</i>

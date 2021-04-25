@@ -197,16 +197,27 @@
                             <label for="no_agenda">Nomor Agenda</label>
                         </div>
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data klasifikasi kode klasifikasi">
-                            <i class="material-icons prefix md-prefix">bookmark</i>
-                            <input id="kode" type="text" class="validate" name="kode" required>
-                                <?php
-                                    if(isset($_SESSION['kodek'])){
-                                        $kodek = $_SESSION['kodek'];
-                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kodek.'</div>';
-                                        unset($_SESSION['kodek']);
+                            <i class="material-icons prefix md-prefix">bookmark</i><label>Kode Klasifikasi</label><br/>
+                            <div class="input-field col s11 right">
+                                <select class="validate" name="kode" id="kode" required>
+                                    <option disabled selected> Pilih </option>
+                                    <?php 
+                                    $sql=mysqli_query($config,"SELECT * FROM tbl_klasifikasi");
+                                    while ($data=mysqli_fetch_array($sql)) {
+                                        ?>
+                                        <option value="<?=$data['id_klasifikasi']?>"><?=$data['kode']?></option> 
+                                        <?php
                                     }
-                                ?>
-                            <label for="kode">Kode Klasifikasi</label>
+                                    ?>
+                                </select>
+                            </div>
+                            <?php
+                                if(isset($_SESSION['kode'])){
+                                    $kode = $_SESSION['kode'];
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$kode.'</div>';
+                                    unset($_SESSION['kode']);
+                                }
+                            ?>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">place</i>
