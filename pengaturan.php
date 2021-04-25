@@ -25,6 +25,9 @@
                     case 'usr':
                         include "user.php";
                         break;
+                    case 'data':
+                        include "data.php";
+                        break;
                     }
             } else {
 
