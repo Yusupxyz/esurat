@@ -24,7 +24,7 @@
             }
         } else {
 
-            $query = mysqli_query($config, "SELECT referensi FROM tbl_sett");
+            $query = mysqli_query($config, "SELECT klasifikasi FROM tbl_sett");
             list($referensi) = mysqli_fetch_array($query);
 
             //pagging
@@ -241,7 +241,7 @@
                                                 <div id="modal" class="modal">
                                                     <div class="modal-content white">
                                                         <h5>Jumlah data yang ditampilkan per halaman</h5>';
-                                                        $query = mysqli_query($config, "SELECT id_sett,referensi FROM tbl_sett");
+                                                        $query = mysqli_query($config, "SELECT id_sett,klasifikasi FROM tbl_sett");
                                                         list($id_sett,$referensi) = mysqli_fetch_array($query);
                                                         echo '
                                                         <div class="row">
@@ -265,7 +265,7 @@
                                                                         <button type="submit" class="modal-action waves-effect waves-green btn-flat" name="simpan">Simpan</button>';
                                                                         if(isset($_REQUEST['simpan'])){
                                                                             $id_sett = "1";
-                                                                            $referensi = $_REQUEST['referensi'];                                                                    $id_user = $_SESSION['id_user'];
+                                                                            $klasifikasi = $_REQUEST['referensi'];                                                                    $id_user = $_SESSION['id_user'];
 
                                                                             $query = mysqli_query($config, "UPDATE tbl_sett SET referensi='$referensi',id_user='$id_user' WHERE id_sett='$id_sett'");
                                                                             if($query == true){

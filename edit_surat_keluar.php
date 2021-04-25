@@ -225,7 +225,7 @@
                                     ?>
                                 <label for="no_agenda">Nomor Agenda</label>
                             </div>
-                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data referensi kode klasifikasi">
+                            <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data klasifikasi kode klasifikasi">
                                 <i class="material-icons prefix md-prefix">bookmark</i>
                                 <input id="kode" type="text" class="validate" name="kode" value="<?php echo $kode ;?>" required>
                                     <?php

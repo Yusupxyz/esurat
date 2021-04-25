@@ -25,7 +25,7 @@ CREATE TABLE `tbl_instansi` (
   `nama` varchar(150) NOT NULL,
   `status` varchar(150) NOT NULL,
   `alamat` varchar(150) NOT NULL,
-  `kepsek` varchar(50) NOT NULL,
+  `kepala` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `website` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,

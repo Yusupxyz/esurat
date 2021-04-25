@@ -101,7 +101,7 @@
                                 <div class="nav-wrapper blue-grey darken-1">
                                     <div class="col m12">
                                         <ul class="left">
-                                            <li class="waves-effect waves-light"><a href="?page=ref&act=imp" class="judul"><i class="material-icons">bookmark</i> Import Referensi Surat</a></li>
+                                            <li class="waves-effect waves-light"><a href="?page=ref&act=imp" class="judul"><i class="material-icons">bookmark</i> Import klasifikasi Surat</a></li>
                                             <li class="waves-effect waves-light"><a href="?page=ref"><i class="material-icons">arrow_back</i> Kembali</a></li>
                                         </ul>
                                     </div>
@@ -159,8 +159,8 @@
                     <div class="col m12">
                         <div class="card">
                             <div class="card-content">
-                                <span class="card-title black-text">Import Referensi Kode Klasifikasi Surat</span>
-                                <p class="kata">Silakan pilih file referensi kode klasifikasi berformat *.csv (file excel) lalu klik tombol <strong>"Import"</strong> untuk melakukan import file. Contoh format file csv bisa di download melalui link dibawah ini.</p><br/>';
+                                <span class="card-title black-text">Import klasifikasi Kode Klasifikasi Surat</span>
+                                <p class="kata">Silakan pilih file klasifikasi kode klasifikasi berformat *.csv (file excel) lalu klik tombol <strong>"Import"</strong> untuk melakukan import file. Contoh format file csv bisa di download melalui link dibawah ini.</p><br/>';
 
                                 // download file contoh format csv
                                 if(isset($_REQUEST['download'])){
@@ -200,7 +200,7 @@
                                             <input type="file" name="file" accept=".csv" required>
                                         </div>
                                         <div class="file-path-wrapper">
-                                            <input class="file-path validate" placeholder="Upload file csv referensi kode klasifikasi" type="text">
+                                            <input class="file-path validate" placeholder="Upload file csv klasifikasi kode klasifikasi" type="text">
                                          </div>
                                     </div>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <div class="col m12" style="margin-bottom: 25px;">

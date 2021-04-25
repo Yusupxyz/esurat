@@ -59,7 +59,7 @@ CREATE TABLE `tbl_instansi` (
   `nama` varchar(150) NOT NULL,
   `status` varchar(150) NOT NULL,
   `alamat` varchar(150) NOT NULL,
-  `kepsek` varchar(50) NOT NULL,
+  `kepala` varchar(50) NOT NULL,
   `nip` varchar(25) NOT NULL,
   `website` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE `tbl_instansi` (
 -- Dumping data for table `tbl_instansi`
 --
 
-INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alamat`, `kepsek`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
+INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alamat`, `kepala`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
 (1, 'Universitas Palangka Raya', 'Fakultas Hukum', 'Kementerian Kebudayaan dan Pendidikan', 'Jl. Yos Sudarso, Palangka, Kec. Jekan Raya, Kota Palangka Raya, Kalimantan Tengah 74874', 'Dr Suriansyah Murhaini SH., MH', '-', 'https://www.upr.ac.id/', 'admin@admin.com', 'logo.png', 1);
 
 -- --------------------------------------------------------
