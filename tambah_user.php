@@ -213,9 +213,14 @@
                             <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih Tipe User</label><br/>
                             <div class="input-field col s11 right">
                                 <select class="browser-default validate" name="admin" id="admin" required>
-                                    <option value="4">Pegawai Fakultas Hukum</option>
-                                    <option value="3">Pejabat Disposisi</option>
-                                    <option value="2">Staf TU</option>
+                                    <?php 
+                                        $sql=mysqli_query($config,"SELECT * FROM tbl_hak_user WHERE id_hak_akses!='1'"); 
+                                        while ($data=mysqli_fetch_array($sql)) {
+                                    ?>
+                                        <option value="<?=$data['id_hak_akses']?>"><?=$data['hak_akses']?></option> 
+                                    <?php
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>

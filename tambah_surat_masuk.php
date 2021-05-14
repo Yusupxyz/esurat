@@ -10,7 +10,8 @@
 
             //validasi form kosong
             if($_REQUEST['no_agenda'] == "" || $_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == ""
-                || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""){
+                || $_REQUEST['kode'] == "" || $_REQUEST['indeks'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""
+                || $_REQUEST['tujuan'] == ""){
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
                 echo '<script language="javascript">window.history.back();</script>';
             } else {
@@ -25,6 +26,7 @@
                 $tgl_surat = $_REQUEST['tgl_surat'];
                 $keterangan = $_REQUEST['keterangan'];
                 $id_user = $_SESSION['id_user'];
+                $tujuan_surat = $_REQUEST['tujuan'];
 
                 //validasi input data
                 if(!preg_match("/^[0-9]*$/", $no_agenda)){
@@ -94,9 +96,9 @@
 
                                                                 move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
 
-                                                                $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat,
+                                                                $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,tujuan_surat,isi,kode,indeks,tgl_surat,
                                                                     tgl_diterima,file,keterangan,id_user)
-                                                                        VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$nkode','$indeks','$tgl_surat',NOW(),'$nfile','$keterangan','$id_user')");
+                                                                        VALUES('$no_agenda','$no_surat','$asal_surat','$tujuan_surat','$isi','$nkode','$indeks','$tgl_surat',NOW(),'$nfile','$keterangan','$id_user')");
 
                                                                 if($query == true){
                                                                     $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
@@ -117,8 +119,8 @@
                                                     } else {
 
                                                         //jika form file kosong akan mengeksekusi script dibawah ini
-                                                        $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,isi,kode,indeks,tgl_surat, tgl_diterima,file,keterangan,id_user)
-                                                            VALUES('$no_agenda','$no_surat','$asal_surat','$isi','$nkode','$indeks','$tgl_surat',NOW(),'','$keterangan','$id_user')");
+                                                        $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_agenda,no_surat,asal_surat,tujuan_surat,isi,kode,indeks,tgl_surat, tgl_diterima,file,keterangan,id_user)
+                                                            VALUES('$no_agenda','$no_surat','$asal_surat','$tujuan_surat','$isi','$nkode','$indeks','$tgl_surat',NOW(),'','$keterangan','$id_user')");
 
                                                         if($query == true){
                                                             $_SESSION['succAdd'] = 'SUKSES! Data berhasil ditambahkan';
@@ -283,6 +285,25 @@
                                     }
                                 ?>
                             <label for="tgl_surat">Tanggal Surat</label>
+                        </div>
+                        <div class="input-field col s6 " data-position="top" >
+                            <i class="material-icons prefix md-prefix">flag</i><label>Tujuan Surat</label><br/>
+                            <div class="input-field col s11 right">
+                                <select class="validate" name="tujuan" id="tujuan" required>
+                                    <option disabled selected> Pilih </option>
+                                    <option value="Dekan"> Dekan </option>
+                                    <option value="Wakil Dekan 1"> Wakil Dekan 1 </option>
+                                    <option value="Wakil Dekan 2"> Wakil Dekan 2 </option>
+                                    <option value="Wakil Dekan 3"> Wakil Dekan 3 </option>
+                                </select>
+                            </div>
+                            <?php
+                                if(isset($_SESSION['tujuan'])){
+                                    $tujuan = $_SESSION['tujuan'];
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$tujuan.'</div>';
+                                    unset($_SESSION['tujuan']);
+                                }
+                            ?>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">description</i>

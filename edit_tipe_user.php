@@ -39,7 +39,7 @@
                             $_SESSION['tipeuser'] = 'Form Tipe User hanya boleh mengandung karakter angka 2 atau 3';
                             echo '<script language="javascript">window.history.back();</script>';
                         } else {
-                            echo "UPDATE tbl_user SET admin='$admin',jabatan='$jabatan',nohp='$nohp' WHERE id_user='$id_user'";
+                            // echo "UPDATE tbl_user SET admin='$admin',jabatan='$jabatan',nohp='$nohp' WHERE id_user='$id_user'";
                             $query = mysqli_query($config, "UPDATE tbl_user SET admin='$admin',jabatan='$jabatan',nohp='$nohp' WHERE id_user='$id_user'");
 
                             if($query == true){
@@ -57,7 +57,7 @@
                 } else {
 
                     $id_user = mysqli_real_escape_string($config, $_REQUEST['id_user']);
-                    $query = mysqli_query($config, "SELECT * FROM tbl_user WHERE id_user='$id_user'");
+                    $query = mysqli_query($config, "SELECT * FROM tbl_user LEFT JOIN tbl_hak_user on tbl_user.admin=tbl_hak_user.id_hak_akses WHERE id_user='$id_user'");
                     if(mysqli_num_rows($query) > 0){
                         $no = 1;
                         while($row = mysqli_fetch_array($query)){?>
@@ -127,20 +127,15 @@
                                         <i class="material-icons prefix md-prefix">supervisor_account</i><label>Pilih tipe user</label><br/>
                                         <div class="input-field col s11 right">
                                             <select class="browser-default" name="admin" id="admin" required>
-                                                <option value="<?php echo $row['admin']; ?>">
-                                                    <?php
-                                                        if($row['admin'] == 2){
-                                                            echo 'Staf TU';
-                                                        } elseif($row['admin'] == 3) {
-                                                            echo 'Pejabat Disposisi';
-                                                        }else{
-                                                            echo 'Pegawai Fakultas Hukum';
-                                                        }
-                                                    ?>
-                                                </option>
-                                                <option value="4">Pegawai Fakultas Hukum</option>
-                                                <option value="3">Pejabat Disposisi</option>
-                                                <option value="2">Staf TU</option>
+                                                <option value="<?php echo $row['id_hak_akses']; ?>"><?=$row['hak_akses']?></option>
+                                                <?php 
+                                                    $sql=mysqli_query($config,"SELECT * FROM tbl_hak_user WHERE id_hak_akses!='1'"); 
+                                                    while ($data=mysqli_fetch_array($sql)) {
+                                                ?>
+                                                    <option value="<?=$data['id_hak_akses']?>"><?=$data['hak_akses']?></option> 
+                                                <?php
+                                                    }
+                                                ?>
                                             </select>
                                         </div>
                                             <?php

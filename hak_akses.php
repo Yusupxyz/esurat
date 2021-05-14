@@ -10,13 +10,13 @@
             $act = $_REQUEST['act'];
             switch ($act) {
                 case 'add':
-                    include "tambah_user.php";
+                    include "tambah_hak.php";
                     break;
                 case 'edit':
-                    include "edit_tipe_user.php";
+                    include "edit_hak.php";
                     break;
                 case 'del':
-                    include "hapus_user.php";
+                    include "hapus_hak.php";
                     break;
             }
         } else {
@@ -31,7 +31,7 @@
                     $curr = ($pg - 1) * $limit;
                 }
 
-                $query = mysqli_query($config, "SELECT * FROM tbl_user LEFT JOIN tbl_hak_user ON tbl_user.admin=tbl_hak_user.id_hak_akses LIMIT $curr, $limit");
+                $query = mysqli_query($config, "SELECT * FROM tbl_hak_user LIMIT $curr, $limit");
                 echo '<!-- Row Start -->
                     <div class="row">
                         <!-- Secondary Nav START -->
@@ -41,9 +41,9 @@
                                     <div class="nav-wrapper blue-grey darken-1">
                                         <div class="col m12">
                                             <ul class="left">
-                                                <li class="waves-effect waves-light hide-on-small-only"><a href="?page=sett&sub=usr" class="judul"><i class="material-icons">people</i> Manajemen User</a></li>
+                                                <li class="waves-effect waves-light hide-on-small-only"><a href="?page=sett&sub=hak" class="judul"><i class="material-icons">people</i> Manajemen Hak Akses User</a></li>
                                                 <li class="waves-effect waves-light">
-                                                    <a href="?page=sett&sub=usr&act=add"><i class="material-icons md-24">person_add</i> Tambah User</a>
+                                                    <a href="?page=sett&sub=hak&act=add"><i class="material-icons md-24">person_add</i> Tambah Hak Akses User</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -105,11 +105,7 @@
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
                                         <th width="8%">No</th>
-                                        <th width="23%">Username</th>
-                                        <th width="30%">Nama<br/>NIP</th>
-                                        <th width="30%">Jabatan</th>
-                                        <th width="23%">No. WA</th>
-                                        <th width="22%">Level</th>
+                                        <th width="23%">Hak Akses</th>
                                         <th width="16%">Tindakan</th>
                                     </tr>
                                 </thead>
@@ -119,27 +115,12 @@
                                 if(mysqli_num_rows($query) > 0){
                                     $no = 1;
                                     while($row = mysqli_fetch_array($query)){
-                                    echo '<td>'.$no++.'</td>';
-
-                                    echo '<td>'.$row['username'].'</td>
-                                            <td>'.$row['nama'].'<br/>'.$row['nip'].'</td>
-                                            <td>'.$row['jabatan'].'</td>
-                                            <td>'.$row['nohp'].'</td>
-                                            <td>'.$row['hak_akses'].'</td>
-                                            <td>';
-
-                                    if($_SESSION['username'] == $row['username']){
-                                        echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
-                                    } else {
-
-                                        if($row['id_user'] == 1){
-                                            echo '<button class="btn small blue-grey waves-effect waves-light"><i class="material-icons">error</i> No Action</button>';
-                                        } else {
-                                          echo ' <a class="btn small blue waves-effect waves-light" href="?page=sett&sub=usr&act=edit&id_user='.$row['id_user'].'">
+                                    echo '<td>'.$no++.'</td>
+                                    <td>'.$row['hak_akses'].'</td><td>';
+                                          echo ' <a class="btn small blue waves-effect waves-light" href="?page=sett&sub=hak&act=edit&id_hak_akses='.$row['id_hak_akses'].'">
                                                  <i class="material-icons">edit</i> EDIT</a>
-                                                 <a class="btn small deep-orange waves-effect waves-light" href="?page=sett&sub=usr&act=del&id_user='.$row['id_user'].'"><i class="material-icons">delete</i> DEL</a>';
-                                        }
-                                    } echo '</td>
+                                                 <a class="btn small deep-orange waves-effect waves-light" href="?page=sett&sub=hak&act=del&id_hak_akses='.$row['id_hak_akses'].'"><i class="material-icons">delete</i> DEL</a>
+                                                </td>
                                     </tr>
                                 </tbody>';
                                     }
@@ -153,7 +134,7 @@
                     </div>
                     <!-- Row form END -->';
 
-                    $query = mysqli_query($config, "SELECT * FROM tbl_user");
+                    $query = mysqli_query($config, "SELECT * FROM tbl_hak_user");
                     $cdata = mysqli_num_rows($query);
                     $cpg = ceil($cdata/$limit);
 
@@ -164,8 +145,8 @@
 
                         if($pg > 1){
                             $prev = $pg - 1;
-                            echo '<li><a href="?page=sett&sub=usr&pg=1"><i class="material-icons md-48">first_page</i></a></li>
-                                  <li><a href="?page=sett&sub=usr&pg='.$prev.'"><i class="material-icons md-48">chevron_left</i></a></li>';
+                            echo '<li><a href="?page=sett&sub=hak&pg=1"><i class="material-icons md-48">first_page</i></a></li>
+                                  <li><a href="?page=sett&sub=hak&pg='.$prev.'"><i class="material-icons md-48">chevron_left</i></a></li>';
                         } else {
                             echo '<li class="disabled"><a href=""><i class="material-icons md-48">first_page</i></a></li>
                                   <li class="disabled"><a href=""><i class="material-icons md-48">chevron_left</i></a></li>';
@@ -174,16 +155,16 @@
                         //perulangan pagging
                         for($i=1; $i <= $cpg; $i++)
                             if($i != $pg){
-                                echo '<li class="waves-effect waves-dark"><a href="?page=sett&sub=usr&pg='.$i.'"> '.$i.' </a></li>';
+                                echo '<li class="waves-effect waves-dark"><a href="?page=sett&sub=hak&pg='.$i.'"> '.$i.' </a></li>';
                             } else {
-                                echo '<li class="active waves-effect waves-dark"><a href="?page=sett&sub=usr&pg='.$i.'"> '.$i.' </a></li>';
+                                echo '<li class="active waves-effect waves-dark"><a href="?page=sett&sub=hak&pg='.$i.'"> '.$i.' </a></li>';
                             }
 
                         //last and next pagging
                         if($pg < $cpg){
                             $next = $pg + 1;
-                            echo '<li><a href="?page=sett&sub=usr&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
-                                  <li><a href="?page=sett&sub=usr&pg='.$cpg.'"><i class="material-icons md-48">last_page</i></a></li>';
+                            echo '<li><a href="?page=sett&sub=hak&pg='.$next.'"><i class="material-icons md-48">chevron_right</i></a></li>
+                                  <li><a href="?page=sett&sub=hak&pg='.$cpg.'"><i class="material-icons md-48">last_page</i></a></li>';
                         } else {
                             echo '<li class="disabled"><a href=""><i class="material-icons md-48">chevron_right</i></a></li>
                                   <li class="disabled"><a href=""><i class="material-icons md-48">last_page</i></a></li>';

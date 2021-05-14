@@ -28,6 +28,9 @@
                     case 'data':
                         include "data.php";
                         break;
+                    case 'hak':
+                        include "hak_akses.php";
+                        break;
                     }
             } else {
 

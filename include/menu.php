@@ -165,7 +165,7 @@
                     <li><a href="?page=gsm">Surat Masuk</a></li>
                     <li><a href="?page=gsk">Surat Keluar</a></li>
                 </ul>
-            <li><a href="?page=ref">Panduan</a></li>
+            <li><a href="?page=ref">Klasifikasi</a></li>
             <?php
                 }
             ?>
@@ -174,6 +174,7 @@
             <li><a class="dropdown-button" href="#!" data-activates="pengaturan">Pengaturan <i class="material-icons md-18">arrow_drop_down</i></a></li>
                 <ul id='pengaturan' class='dropdown-content'>
                     <li><a href="?page=sett">Instansi</a></li>
+                    <li><a href="?page=sett&sub=hak">Hak Akses User</a></li>
                     <li><a href="?page=sett&sub=usr">User</a></li>
                     <li><a href="?page=sett&sub=data">Data Per Halaman</a></li>
                     <li class="divider"></li>
