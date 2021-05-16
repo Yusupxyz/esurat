@@ -118,9 +118,21 @@
 
                 //menghitung jumlah pengguna
                 $count5 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_user"));
+                $count8=$count1-$count3;
             ?>
 
             <!-- Info Statistic START -->
+            <?php
+            if($_SESSION['admin'] == 3){?>
+            <div class="col s12 m4">
+                <div class="card red darken-1">
+                    <div class="card-content">
+                        <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Belum Didisposisi</span>
+                        <?php echo '<h5 class="white-text link">'.$count8.' Surat Masuk</h5>'; ?>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
             <div class="col s12 m4">
                 <div class="card cyan">
                     <div class="card-content">
@@ -140,6 +152,7 @@
                 </div>
             </div>
             <?php } ?>
+            
             <?php
             if($_SESSION['admin'] != 4 ){?>
             <div class="col s12 m4">
@@ -184,7 +197,7 @@
         <?php
             }
         ?>
-
+        
         </div>
         <!-- Row END -->
     <?php
