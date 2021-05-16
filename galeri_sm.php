@@ -53,13 +53,13 @@
 
                         $dari_tanggal = $_REQUEST['dari_tanggal'];
                         $sampai_tanggal = $_REQUEST['sampai_tanggal'];
+                        $jenis = $_REQUEST['jenis'];
 
-                        if($_REQUEST['dari_tanggal'] == "" || $_REQUEST['sampai_tanggal'] == ""){
+                        if($_REQUEST['dari_tanggal'] == "" || $_REQUEST['sampai_tanggal'] == "" || $_REQUEST['jenis'] == ""){
                             header("Location: ./admin.php?page=gsm");
                             die();
                         } else {
-
-                        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE tgl_diterima BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER By id_surat DESC");
+                        $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE jenis_surat='$jenis' AND tgl_diterima BETWEEN '$dari_tanggal' AND '$sampai_tanggal' ORDER By id_surat DESC");
 
                         echo '<!-- Row form Start -->
                             <div class="row jarak-form black-text">
@@ -73,6 +73,16 @@
                                         <i class="material-icons prefix md-prefix">date_range</i>
                                         <input id="sampai_tanggal" type="text" name="sampai_tanggal" id="sampai_tanggal" required>
                                         <label for="sampai_tanggal">Sampai Tanggal</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <i class="material-icons prefix md-prefix">format_list_bulleted</i><label>Jenis Surat</label><br/>
+                                        <div class="input-field col s11 right">
+                                            <select class="validate" name="jenis" id="jenis" required>
+                                                <option disabled selected> Pilih </option>
+                                                <option value="internal"> Internal </option>
+                                                <option value="external"> Eksternal </option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col s6">
                                         <button type="submit" name="submit" class="btn-large blue waves-effect waves-light"> FILTER <i class="material-icons">filter_list</i></button>&nbsp;&nbsp;
@@ -146,14 +156,14 @@
                                     }
                                     echo '
 
-                                <p class="warna agenda">Galeri file surat masuk antara tanggal <strong>'.$d." ".$nm." ".$y.'</strong> sampai dengan tanggal <strong>'.$d2." ".$nm2." ".$y2.'</strong></p>
+                                <p class="warna agenda">Galeri file surat masuk antara tanggal <strong>'.$d." ".$nm." ".$y.'</strong> sampai dengan tanggal <strong>'.$d2." ".$nm2." ".$y2.'</strong> dan jenis surat <strong>'.$jenis.'</strong></p>
                                 </div>
                             </div>';
 
                             if(mysqli_num_rows($query) > 0){
                                 while($row = mysqli_fetch_array($query)){
                                 if(empty($row['file'])){
-                                    echo '';
+                                    echo '<center>Surat tidak memiliki File PDF.</center>';
                                 } else {
 
                                     $ekstensi = array('jpg','png','jpeg');
@@ -216,6 +226,16 @@
                                         <i class="material-icons prefix md-prefix">date_range</i>
                                         <input id="sampai_tanggal" type="text" name="sampai_tanggal" id="sampai_tanggal" required>
                                         <label for="sampai_tanggal">Sampai Tanggal</label>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <i class="material-icons prefix md-prefix">format_list_bulleted</i><label>Jenis Surat</label><br/>
+                                        <div class="input-field col s11 right">
+                                            <select class="validate" name="jenis" id="jenis" required>
+                                                <option disabled selected> Pilih </option>
+                                                <option value="internal"> Internal </option>
+                                                <option value="external"> Eksternal </option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col s6">
                                         <button type="submit" name="submit" class="btn-large blue waves-effect waves-light">FILTER <i class="material-icons">filter_list</i></button>

@@ -136,7 +136,7 @@
                             <table class="bordered" id="tbl">
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
-                                        <th width="10%">No. Agenda<br/>Kode</th>
+                                        <th width="10%">Kode</th>
                                         <th width="31%">Isi Ringkas<br/> File</th>
                                         <th width="24%">Tujuan</th>
                                         <th width="19%">No. Surat<br/>Tgl Surat</th>
@@ -148,13 +148,13 @@
                                     <tr>';
 
                                 //script untuk mencari data
-                                $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE isi LIKE '%$cari%' OR no_agenda LIKE '%$cari%' OR no_surat LIKE '%$cari%' 
+                                $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE isi LIKE '%$cari%' OR no_surat LIKE '%$cari%' 
                                                     OR tujuan LIKE '%$cari%' OR kode LIKE '%$cari%' OR tgl_surat LIKE '%$cari%' ORDER by id_surat DESC LIMIT $curr, $limit");
                                 if(mysqli_num_rows($query) > 0){
                                     $no = 1;
                                     while($row = mysqli_fetch_array($query)){
                                       echo '
-                                        <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
+                                        <td>'.$row['kode'].'</td>
                                         <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
                                         if(!empty($row['file'])){
@@ -268,7 +268,7 @@
                         <table class="bordered" id="tbl">
                             <thead class="blue lighten-4" id="head">
                                 <tr>
-                                    <th width="10%">No. Agenda<br/>Kode</th>
+                                    <th width="10%">Kode</th>
                                     <th width="31%">Isi Ringkas<br/> File</th>
                                     <th width="24%">Tujuan</th>
                                     <th width="19%">No. Surat<br/>Tgl Surat</th>
@@ -330,7 +330,7 @@
                                 $no = 1;
                                 while($row = mysqli_fetch_array($query)){
                                   echo '
-                                    <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
+                                    <td>'.$row['kode'].'</td>
                                     <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
                                     if(!empty($row['file'])){

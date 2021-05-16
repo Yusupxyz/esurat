@@ -144,7 +144,7 @@
                         <table class="bordered" id="tbl">
                             <thead class="blue lighten-4" id="head">
                                 <tr>
-                                    <th width="10%">No. Agenda<br/>Kode</th>
+                                    <th width="10%">Kode</th>
                                     <th width="30%">Isi Ringkas<br/> File</th>
                                     <th width="24%">Asal Surat</th>
                                     <th width="18%">No. Surat<br/>Tgl Surat</th>
@@ -157,17 +157,17 @@
                             //script untuk mencari data
                             if ($_SESSION['admin']==4){
                                 $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON tbl_surat_masuk.id_surat=tbl_disposisi.id_surat
-                                                    WHERE tujuan=".$_SESSION['id_user']." AND (isi LIKE '%$cari%' OR no_agenda LIKE '%$cari%' OR no_surat LIKE '%$cari%' 
+                                                    WHERE tujuan=".$_SESSION['id_user']." AND (isi LIKE '%$cari%' OR no_surat LIKE '%$cari%' 
                                                     OR asal_surat LIKE '%$cari%' OR kode LIKE '%$cari%' OR tgl_surat LIKE '%$cari%')  ORDER by tbl_surat_masuk.id_surat DESC LIMIT $curr, $limit");
                             }else{
-                                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE isi LIKE '%$cari%' OR no_agenda LIKE '%$cari%' OR no_surat LIKE '%$cari%' 
+                                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE isi LIKE '%$cari%'  OR no_surat LIKE '%$cari%' 
                                                     OR asal_surat LIKE '%$cari%' OR kode LIKE '%$cari%' OR tgl_surat LIKE '%$cari%' ORDER by id_surat DESC LIMIT $curr, $limit");
                             }
                             if($query==true && mysqli_num_rows($query) > 0){
                                 $no = 1;
                                 while($row = mysqli_fetch_array($query)){
                                   echo '
-                                    <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
+                                    <td>'.$row['kode'].'</td>
                                     <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
                                     if(!empty($row['file'])){
@@ -294,7 +294,7 @@
                             <table class="bordered" id="tbl">
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
-                                        <th width="10%">No. Agenda<br/>Kode</th>
+                                        <th width="10%">Kode</th>
                                         <th width="30%">Isi Ringkas<br/> File</th>
                                         <th width="24%">Asal Surat</th>
                                         <th width="18%">No. Surat<br/>Tgl Surat</th>
@@ -363,7 +363,7 @@
                                         $query2 = mysqli_query($config, "SELECT * FROM tbl_disposisi WHERE id_surat='".$row['id_surat']."'");
                                         $count_disp=mysqli_num_rows($query2);
                                       echo '
-                                        <td>'.$row['no_agenda'].'<br/><hr/>'.$row['kode'].'</td>
+                                        <td>'.$row['kode'].'</td>
                                         <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
 
                                         if(!empty($row['file'])){

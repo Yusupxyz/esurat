@@ -147,7 +147,7 @@
                     }
                 ?>  
                 </ul>
-            <?php
+            <!-- <?php
                 if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2 || $_SESSION['admin'] == 3){ ?>
             <li><a class="dropdown-button" href="#!" data-activates="agenda">Buku Agenda <i class="material-icons md-18">arrow_drop_down</i></a></li>
                 <ul id='agenda' class='dropdown-content'>
@@ -157,7 +157,7 @@
                 </ul>
                 <?php
                 }
-            ?>
+            ?> -->
              <?php
                 if($_SESSION['admin'] != 4){ ?>
             <li><a class="dropdown-button" href="#!" data-activates="agenda">Galeri File <i class="material-icons md-18">arrow_drop_down</i></a></li>
