@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2021 at 09:26 PM
+-- Generation Time: May 21, 2021 at 04:40 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -39,6 +39,27 @@ CREATE TABLE `tbl_disposisi` (
   `notif` enum('1','0') NOT NULL DEFAULT '0',
   `status_wa` enum('Terkirim','Gagal','Tertunda','Belum Dikirim') NOT NULL DEFAULT 'Belum Dikirim'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_hak_user`
+--
+
+CREATE TABLE `tbl_hak_user` (
+  `id_hak_akses` int(3) NOT NULL,
+  `hak_akses` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_hak_user`
+--
+
+INSERT INTO `tbl_hak_user` (`id_hak_akses`, `hak_akses`) VALUES
+(1, 'Super Admin	\r\n'),
+(2, 'Staff TU'),
+(3, 'Pejabat Disposisi'),
+(4, 'Pegawai Fakultas Hukum');
 
 -- --------------------------------------------------------
 
@@ -80,6 +101,13 @@ CREATE TABLE `tbl_klasifikasi` (
   `uraian` mediumtext NOT NULL,
   `id_user` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_klasifikasi`
+--
+
+INSERT INTO `tbl_klasifikasi` (`id_klasifikasi`, `kode`, `nama`, `uraian`, `id_user`) VALUES
+(3, 'AK', 'Akreditasi', 'Akreditasi Fakultas', 1);
 
 -- --------------------------------------------------------
 
@@ -130,17 +158,18 @@ CREATE TABLE `tbl_surat_keluar` (
 
 CREATE TABLE `tbl_surat_masuk` (
   `id_surat` int(10) NOT NULL,
-  `no_agenda` int(10) NOT NULL,
   `no_surat` varchar(50) NOT NULL,
   `asal_surat` varchar(250) NOT NULL,
+  `tujuan_surat` varchar(50) NOT NULL,
   `isi` mediumtext NOT NULL,
   `kode` varchar(30) NOT NULL,
-  `indeks` varchar(30) NOT NULL,
   `tgl_surat` date NOT NULL,
   `tgl_diterima` date NOT NULL,
   `file` varchar(250) NOT NULL,
   `keterangan` varchar(250) NOT NULL,
-  `id_user` tinyint(2) NOT NULL
+  `jenis_surat` enum('internal','external') NOT NULL,
+  `id_user` tinyint(2) NOT NULL,
+  `notif` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -167,8 +196,11 @@ CREATE TABLE `tbl_user` (
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`, `nohp`, `jabatan`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Wandy Supriadi', '-', 1, '082353323944', 'Developer'),
 (5, 'staf1', '827ccb0eea8a706c4c34a16891f84e7b', 'Yusup Hidayat', '-', 2, '081254738486', 'Staf'),
-(9, 'dekan_hukum', '827ccb0eea8a706c4c34a16891f84e7b', 'Dr Suriansyah Murhaini SH., MH', '-', 4, '6283143206955', 'Dekan'),
-(10, 'kasubag_uk', '827ccb0eea8a706c4c34a16891f84e7b', 'Yulinde, S.Hut', '197107152001122003', 3, '-', 'Kasubag Umum dan Kepegawaian');
+(9, 'dekan_hukum', '827ccb0eea8a706c4c34a16891f84e7b', 'Dr Suriansyah Murhaini SH., MH', '-', 3, '6283143206955', 'Dekan'),
+(10, 'kasubag_uk', '827ccb0eea8a706c4c34a16891f84e7b', 'Yulinde, S.Hut', '197107152001122003', 4, '-', 'Kasubag Umum dan Kepegawaian'),
+(12, 'wakil_d1', '827ccb0eea8a706c4c34a16891f84e7b', 'A', '-', 3, '081254738486', 'Wakil Dekan 1'),
+(13, 'wakil_d2', '827ccb0eea8a706c4c34a16891f84e7b', 'B', '-', 3, '081254738486', 'Wakil Dekan 2'),
+(14, 'wakil_d3', '827ccb0eea8a706c4c34a16891f84e7b', 'C', '-', 3, '081254738486', 'Wakil Dekan 3');
 
 --
 -- Indexes for dumped tables
@@ -179,6 +211,12 @@ INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin
 --
 ALTER TABLE `tbl_disposisi`
   ADD PRIMARY KEY (`id_disposisi`);
+
+--
+-- Indexes for table `tbl_hak_user`
+--
+ALTER TABLE `tbl_hak_user`
+  ADD PRIMARY KEY (`id_hak_akses`);
 
 --
 -- Indexes for table `tbl_instansi`
@@ -224,13 +262,19 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_disposisi`
 --
 ALTER TABLE `tbl_disposisi`
-  MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `tbl_hak_user`
+--
+ALTER TABLE `tbl_hak_user`
+  MODIFY `id_hak_akses` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_klasifikasi`
 --
 ALTER TABLE `tbl_klasifikasi`
-  MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
@@ -242,13 +286,13 @@ ALTER TABLE `tbl_surat_keluar`
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
