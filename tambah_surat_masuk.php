@@ -254,12 +254,16 @@
                         <div class="input-field col s6 " data-position="top" >
                             <i class="material-icons prefix md-prefix">flag</i><label>Tujuan Surat</label><br/>
                             <div class="input-field col s11 right">
+                            
+
                                 <select class="validate" name="tujuan" id="tujuan" required>
                                     <option disabled selected> Pilih </option>
-                                    <option value="Dekan"> Dekan </option>
-                                    <option value="Wakil Dekan 1"> Wakil Dekan 1 </option>
-                                    <option value="Wakil Dekan 2"> Wakil Dekan 2 </option>
-                                    <option value="Wakil Dekan 3"> Wakil Dekan 3 </option>
+                                    <?php
+                                        $results = mysqli_query($config, "SELECT * FROM tbl_user WHERE admin=3");
+                                        while($row = mysqli_fetch_array($results)){
+                                    ?>
+                                        <option value="<?= $row['id_user']?>"> <?= $row['jabatan'].' | '.$row['nama'];?> </option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <?php

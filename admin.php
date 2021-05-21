@@ -101,11 +101,14 @@
 
             <?php
                 //menghitung jumlah surat masuk
-                if($_SESSION['admin'] != 4){
-                    $count1 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk"));
-                }else{
+                if($_SESSION['admin'] == 3){
+                    $count1 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON tbl_surat_masuk.id_surat=tbl_disposisi.id_surat WHERE tujuan_surat=".$_SESSION['id_user']));
+                    $count6 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON tbl_surat_masuk.id_surat=tbl_disposisi.id_surat WHERE tujuan_surat=".$_SESSION['id_user']." AND tbl_surat_masuk.notif='0'"));
+                }elseif($_SESSION['admin'] == 4){
                     $count1 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON tbl_surat_masuk.id_surat=tbl_disposisi.id_surat WHERE tujuan=".$_SESSION['id_user']));
                     $count6 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON tbl_surat_masuk.id_surat=tbl_disposisi.id_surat WHERE tujuan=".$_SESSION['id_user']." AND notif='0'"));
+                }else{
+                    $count1 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_masuk"));
                 }
                 //menghitung jumlah surat masuk
                 $count2 = mysqli_num_rows(mysqli_query($config, "SELECT * FROM tbl_surat_keluar"));
@@ -122,17 +125,7 @@
             ?>
 
             <!-- Info Statistic START -->
-            <?php
-            if($_SESSION['admin'] == 3){?>
-            <div class="col s12 m4">
-                <div class="card red darken-1">
-                    <div class="card-content">
-                        <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Belum Didisposisi</span>
-                        <?php echo '<h5 class="white-text link">'.$count8.' Surat Masuk</h5>'; ?>
-                    </div>
-                </div>
-            </div>
-            <?php } ?>
+            
             <div class="col s12 m4">
                 <div class="card cyan">
                     <div class="card-content">
@@ -146,8 +139,8 @@
             <div class="col s12 m5">
                 <div class="card red darken-1">
                     <div class="card-content">
-                        <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Jumlah Surat Masuk Belum Dibaca</span>
-                        <?php echo '<a href="http://localhost/esurat/admin.php?page=tsm"><h5 class="white-text link">'.$count6.' Surat Keluar</h5></a>'; ?>
+                        <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Belum Dibaca</span>
+                        <?php echo '<a href="http://localhost/esurat/admin.php?page=tsm"><h6 class="white-text link">'.$count6.' Surat Masuk</h6></a>'; ?>
                     </div>
                 </div>
             </div>
@@ -183,6 +176,25 @@
             <?php
             }
         ?>
+        <?php
+            if($_SESSION['admin'] == 3){?>
+            <div class="col s12 m4">
+                <div class="card red darken-1">
+                    <div class="card-content">
+                        <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Belum Didisposisi</span>
+                        <?php echo '<h5 class="white-text link">'.$count8.' Surat Masuk</h5>'; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="card red darken-1">
+                    <div class="card-content">
+                        <span class="card-title white-text"><i class="material-icons md-36">drafts</i> Belum Dibaca</span>
+                        <?php echo '<a href="http://localhost/esurat/admin.php?page=tsm"><h6 class="white-text link">'.$count6.' Surat Masuk</h6></a>'; ?>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
         <?php
             if($_SESSION['id_user'] == 1){?>
             <div class="col s12 m4">
