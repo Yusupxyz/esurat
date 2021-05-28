@@ -58,6 +58,9 @@
                 case 'ref':
                     include "referensi.php";
                     break;
+                case 'internal':
+                    include "kode_internal.php";
+                    break;
                 case 'sett':
                     include "pengaturan.php";
                     break;

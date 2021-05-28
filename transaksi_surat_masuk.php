@@ -158,7 +158,7 @@
 
                             //script untuk mencari data
                             if ($_SESSION['admin']==4){
-                                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON tbl_surat_masuk.id_surat=tbl_disposisi.id_surat
+                                $query = mysqli_query($config, "SELECT *, tbl_surat_masuk.id_surat as id_surat_masuk FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON tbl_surat_masuk.id_surat=tbl_disposisi.id_surat
                                                     WHERE tujuan=".$_SESSION['id_user']." AND (isi LIKE '%$cari%' OR no_surat LIKE '%$cari%' 
                                                     OR asal_surat LIKE '%$cari%' OR kode LIKE '%$cari%' OR tgl_surat LIKE '%$cari%')  ORDER by tbl_surat_masuk.id_surat DESC LIMIT $curr, $limit");
                             }elseif ($_SESSION['admin']==3){
@@ -167,7 +167,7 @@
                                                     OR asal_surat LIKE '%$cari%' OR kode LIKE '%$cari%' OR tgl_surat LIKE '%$cari%' ORDER by tbl_disposisi.id_disposisi DESC LIMIT $curr, $limit");
                             }
                             else{
-                                $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk WHERE isi LIKE '%$cari%'  OR no_surat LIKE '%$cari%' 
+                                $query = mysqli_query($config, "SELECT *, tbl_surat_masuk.id_surat as id_surat_masuk FROM tbl_surat_masuk WHERE isi LIKE '%$cari%'  OR no_surat LIKE '%$cari%' 
                                                     OR asal_surat LIKE '%$cari%' OR kode LIKE '%$cari%' OR tgl_surat LIKE '%$cari%' ORDER by id_surat DESC LIMIT $curr, $limit");
                             }
                             if($query==true && mysqli_num_rows($query) > 0){
@@ -358,14 +358,14 @@
 
                                 //script untuk menampilkan data
                                 if ($_SESSION['admin']==4){
-                                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON 
+                                    $query = mysqli_query($config, "SELECT *, tbl_surat_masuk.id_surat as id_surat_masuk FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON 
                                     tbl_surat_masuk.id_surat=tbl_disposisi.id_surat
                                     WHERE tujuan=".$_SESSION['id_user']." ORDER by tbl_surat_masuk.id_surat DESC LIMIT $curr, $limit");
                                 }else if ($_SESSION['admin']==3){
                                     $query = mysqli_query($config, "SELECT *, tbl_surat_masuk.id_surat as id_surat_masuk FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON 
                                     tbl_surat_masuk.id_surat=tbl_disposisi.id_surat WHERE tujuan_surat=".$_SESSION['id_user']." ORDER by tbl_disposisi.id_disposisi DESC LIMIT $curr, $limit");
                                 }else{
-                                    $query = mysqli_query($config, "SELECT * FROM tbl_surat_masuk ORDER by id_surat DESC LIMIT $curr, $limit");
+                                    $query = mysqli_query($config, "SELECT *, tbl_surat_masuk.id_surat as id_surat_masuk FROM tbl_surat_masuk ORDER by id_surat DESC LIMIT $curr, $limit");
                                 }
 
                                 if($query==true && mysqli_num_rows($query) > 0){

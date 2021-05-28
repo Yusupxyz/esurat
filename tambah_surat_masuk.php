@@ -9,15 +9,28 @@
         if(isset($_REQUEST['submit'])){
 
             //validasi form kosong
-            if($_REQUEST['no_surat'] == "" || $_REQUEST['asal_surat'] == "" || $_REQUEST['isi'] == ""
+            if(($_REQUEST['no_surat'] == "" && $_REQUEST['no_surat1'] == "") || ($_REQUEST['asal_surat1'] == "" && $_REQUEST['asal_surat2'] == "") 
+                || $_REQUEST['isi'] == ""
                 || $_REQUEST['kode'] == "" || $_REQUEST['tgl_surat'] == ""  || $_REQUEST['keterangan'] == ""
                 || $_REQUEST['tujuan'] == "" || $_REQUEST['jenis'] == ""){
                 $_SESSION['errEmpty'] = 'ERROR! Semua form wajib diisi';
                 echo '<script language="javascript">window.history.back();</script>';
             } else {
 
-                $no_surat = $_REQUEST['no_surat'];
-                $asal_surat = $_REQUEST['asal_surat'];
+                if ($_REQUEST['no_surat'] == ""){
+                    $no_surat = $_REQUEST['no_surat1'].'/'.$_REQUEST['no_surat2'].'/'.$_REQUEST['no_surat3'].'/'.$_REQUEST['no_surat4'];
+                }else{
+                    $no_surat = $_REQUEST['no_surat'];
+                }
+
+                if ($_REQUEST['asal_surat1'] == ""){
+                    $asal_surat = $_REQUEST['asal_surat2'];
+                    $cek = mysqli_query($config, "SELECT * FROM tbl_kode_internal WHERE kode='$asal_surat'");
+                    $asal_surat = $cek->fetch_row()[1];
+                }else{
+                    $asal_surat = $_REQUEST['asal_surat1'];
+                }
+
                 $isi = $_REQUEST['isi'];
                 $kode = substr($_REQUEST['kode'],0,30);
                 $nkode = trim($kode);
@@ -185,6 +198,23 @@
 
                     <!-- Row in form START -->
                     <div class="row">
+                    <div class="input-field col s6 " data-position="top" >
+                            <i class="material-icons prefix md-prefix">format_list_bulleted</i><label>Jenis Surat</label><br/>
+                            <div class="input-field col s11 right">
+                                <select class="validate" name="jenis" id="jenis" onchange="getval(this);" required>
+                                    <option disabled selected> Pilih </option>
+                                    <option value="internal"> Internal </option>
+                                    <option value="external"> Eksternal </option>
+                                </select>
+                            </div>
+                            <?php
+                                if(isset($_SESSION['jenis'])){
+                                    $jenis = $_SESSION['jenis'];
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$jenis.'</div>';
+                                    unset($_SESSION['jenis']);
+                                }
+                            ?>
+                        </div>
                   
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data klasifikasi kode klasifikasi">
                             <i class="material-icons prefix md-prefix">bookmark</i><label>Kode Klasifikasi</label><br/>
@@ -210,9 +240,9 @@
                             ?>
                         </div>
                         
-                        <div class="input-field col s6">
+                        <div class="input-field col s6" id="asal1">
                             <i class="material-icons prefix md-prefix">place</i>
-                            <input id="asal_surat" type="text" class="validate" name="asal_surat" required>
+                            <input id="asal_surat1" type="text" class="validate" name="asal_surat1" required>
                                 <?php
                                     if(isset($_SESSION['asal_surat'])){
                                         $asal_surat = $_SESSION['asal_surat'];
@@ -222,7 +252,54 @@
                                 ?>
                             <label for="asal_surat">Asal Surat</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s6 " data-position="top" style="display:none" id="asal2" >
+                            <i class="material-icons prefix md-prefix">place</i><label>Asal Surat</label><br/>
+                            <div class="input-field col s11 right">
+                            
+
+                                <select class="validate" name="asal_surat2" id="asal_surat2" onchange="getval2(this);" required="true">
+                                    <option disabled selected> Pilih </option>
+                                    <?php
+                                        $results = mysqli_query($config, "SELECT * FROM tbl_kode_internal");
+                                        while($row = mysqli_fetch_array($results)){
+                                    ?>
+                                        <option value="<?= $row['kode']?>"> <?= $row['unit_kerja'].' | '.$row['kode'];?> </option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <?php
+                                if(isset($_SESSION['asal_surat'])){
+                                    $tujuan = $_SESSION['asal_surat'];
+                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$asal_surat.'</div>';
+                                    unset($_SESSION['asal_surat']);
+                                }
+                            ?>
+                        </div>
+                        <div class="input-field col s6 " id="no2" style="display:none">
+                            <i class="material-icons prefix md-prefix ">looks_two</i>
+                            <input id="no_surat1" type="text" class="validate" name="no_surat1" maxlength="5" style="width: 50px;" required>  
+                            &ensp;/
+                            <input id="no_surat2" type="text" class="validate" name="no_surat2" maxlength="5" style="width: 50px;" readonly>  
+                            &ensp;/
+                            <input id="no_surat3" type="text" class="validate" name="no_surat3" maxlength="5" style="width: 50px;" required>  
+                            &ensp;/
+                            <input id="no_surat4" type="text" class="validate" name="no_surat4" maxlength="5" value="<?php echo date("Y"); ?>" style="width: 50px;" readonly>  
+
+                                <?php
+                                    if(isset($_SESSION['no_surat'])){
+                                        $no_surat = $_SESSION['no_surat'];
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$no_surat.'</div>';
+                                        unset($_SESSION['no_surat']);
+                                    }
+                                    if(isset($_SESSION['errDup'])){
+                                        $errDup = $_SESSION['errDup'];
+                                        echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$errDup.'</div>';
+                                        unset($_SESSION['errDup']);
+                                    }
+                                ?>
+                            <label for="no_surat">Nomor Surat</label>
+                        </div>
+                        <div class="input-field col s6" id="no1">
                             <i class="material-icons prefix md-prefix">looks_two</i>
                             <input id="no_surat" type="text" class="validate" name="no_surat" required>
                                 <?php
@@ -274,23 +351,7 @@
                                 }
                             ?>
                         </div>
-                        <div class="input-field col s6 " data-position="top" >
-                            <i class="material-icons prefix md-prefix">format_list_bulleted</i><label>Jenis Surat</label><br/>
-                            <div class="input-field col s11 right">
-                                <select class="validate" name="jenis" id="jenis" required>
-                                    <option disabled selected> Pilih </option>
-                                    <option value="internal"> Internal </option>
-                                    <option value="external"> Eksternal </option>
-                                </select>
-                            </div>
-                            <?php
-                                if(isset($_SESSION['jenis'])){
-                                    $jenis = $_SESSION['jenis'];
-                                    echo '<div id="alert-message" class="callout bottom z-depth-1 red lighten-4 red-text">'.$jenis.'</div>';
-                                    unset($_SESSION['jenis']);
-                                }
-                            ?>
-                        </div>
+                        
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">description</i>
                             <textarea id="isi" class="materialize-textarea validate" name="isi" required></textarea>

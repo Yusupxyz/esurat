@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2021 at 04:40 AM
+-- Generation Time: May 28, 2021 at 01:30 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -108,6 +108,27 @@ CREATE TABLE `tbl_klasifikasi` (
 
 INSERT INTO `tbl_klasifikasi` (`id_klasifikasi`, `kode`, `nama`, `uraian`, `id_user`) VALUES
 (3, 'AK', 'Akreditasi', 'Akreditasi Fakultas', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_kode_internal`
+--
+
+CREATE TABLE `tbl_kode_internal` (
+  `id_kode` int(3) NOT NULL,
+  `unit_kerja` varchar(100) NOT NULL,
+  `kode` varchar(10) NOT NULL,
+  `id_user` tinyint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_kode_internal`
+--
+
+INSERT INTO `tbl_kode_internal` (`id_kode`, `unit_kerja`, `kode`, `id_user`) VALUES
+(1, 'Rektor / Wakil Rektor', 'UN24', 1),
+(3, 'Biro Umum dan Keuangan', 'UN24.1', 1);
 
 -- --------------------------------------------------------
 
@@ -231,6 +252,12 @@ ALTER TABLE `tbl_klasifikasi`
   ADD PRIMARY KEY (`id_klasifikasi`);
 
 --
+-- Indexes for table `tbl_kode_internal`
+--
+ALTER TABLE `tbl_kode_internal`
+  ADD PRIMARY KEY (`id_kode`);
+
+--
 -- Indexes for table `tbl_sett`
 --
 ALTER TABLE `tbl_sett`
@@ -275,6 +302,12 @@ ALTER TABLE `tbl_hak_user`
 --
 ALTER TABLE `tbl_klasifikasi`
   MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_kode_internal`
+--
+ALTER TABLE `tbl_kode_internal`
+  MODIFY `id_kode` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_surat_keluar`

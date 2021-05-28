@@ -166,6 +166,7 @@
                     <li><a href="?page=gsk">Surat Keluar</a></li>
                 </ul>
             <li><a href="?page=ref">Klasifikasi</a></li>
+            <li><a href="?page=internal">Kode Surat Internal</a></li>
             <?php
                 }
             ?>
