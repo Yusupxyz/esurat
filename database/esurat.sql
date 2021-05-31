@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2021 at 01:30 PM
+-- Generation Time: May 31, 2021 at 06:08 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -162,7 +162,6 @@ CREATE TABLE `tbl_surat_keluar` (
   `no_agenda` int(10) NOT NULL,
   `tujuan` varchar(250) NOT NULL,
   `no_surat` varchar(50) NOT NULL,
-  `isi` mediumtext NOT NULL,
   `kode` varchar(30) NOT NULL,
   `tgl_surat` date NOT NULL,
   `tgl_catat` date NOT NULL,
@@ -182,7 +181,6 @@ CREATE TABLE `tbl_surat_masuk` (
   `no_surat` varchar(50) NOT NULL,
   `asal_surat` varchar(250) NOT NULL,
   `tujuan_surat` varchar(50) NOT NULL,
-  `isi` mediumtext NOT NULL,
   `kode` varchar(30) NOT NULL,
   `tgl_surat` date NOT NULL,
   `tgl_diterima` date NOT NULL,
@@ -313,13 +311,13 @@ ALTER TABLE `tbl_kode_internal`
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
-  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
 --
 ALTER TABLE `tbl_surat_masuk`
-  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`

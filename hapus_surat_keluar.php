@@ -46,21 +46,13 @@
         				            </thead>
 
         				            <tbody>
-        				                <tr>
-        				                    <td width="13%">No. Agenda</td>
-        				                    <td width="1%">:</td>
-        				                    <td width="86%">'.$row['no_agenda'].'</td>
-        				                </tr>
+        				               
         				                <tr>
         				                    <td width="13%">Kode Klasifikasi</td>
         				                    <td width="1%">:</td>
         				                    <td width="86%">'.$row['kode'].'</td>
         				                </tr>
-        				                <tr>
-        				                    <td width="13%">No. Isi</td>
-        				                    <td width="1%">:</td>
-        				                    <td width="86%">'.$row['isi'].'</td>
-        				                </tr>
+        				               
         				                <tr>
         				                    <td width="13%">File</td>
         				                    <td width="1%">:</td>

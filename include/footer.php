@@ -136,6 +136,24 @@ $(document).ready(function(){
 
     }
 
+    function getval3(sel)
+    {
+        document.getElementById("no_surat3").value = sel.options[sel.selectedIndex].text;
+
+    }
+
+    function getval4(sel)
+    {
+        <?php 
+            $year=date('Y');
+            // echo "SELECT count(*) FROM tbl_surat_keluar WHERE year(tgl_surat)='$year'";
+            $count = mysqli_query($config, "SELECT count(*) FROM tbl_surat_keluar WHERE year(tgl_surat)='$year'")->fetch_row()[0]+1;
+            $no_surat=$count."/UN24.7/".$year;
+        ?>
+        document.getElementById("no_surat").value = "<?= $count ?>/UN24.7/"+sel.options[sel.selectedIndex].text+"/<?= $year ?>";
+
+    }
+
 </script>
 <!-- Javascript END -->
 

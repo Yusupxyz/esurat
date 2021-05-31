@@ -148,14 +148,14 @@
                                     <tr>';
 
                                 //script untuk mencari data
-                                $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE isi LIKE '%$cari%' OR no_surat LIKE '%$cari%' 
+                                $query = mysqli_query($config, "SELECT * FROM tbl_surat_keluar WHERE  no_surat LIKE '%$cari%' 
                                                     OR tujuan LIKE '%$cari%' OR kode LIKE '%$cari%' OR tgl_surat LIKE '%$cari%' ORDER by id_surat DESC LIMIT $curr, $limit");
                                 if(mysqli_num_rows($query) > 0){
                                     $no = 1;
                                     while($row = mysqli_fetch_array($query)){
                                       echo '
                                         <td>'.$row['kode'].'</td>
-                                        <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
+                                        <td><strong>File :</strong>';
 
                                         if(!empty($row['file'])){
                                             echo ' <strong><a href="?page=gsk&act=fsk&id_surat='.$row['id_surat'].'">'.$row['file'].'</a></strong>';
@@ -331,7 +331,7 @@
                                 while($row = mysqli_fetch_array($query)){
                                   echo '
                                     <td>'.$row['kode'].'</td>
-                                    <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
+                                    <td><strong>File :</strong>';
 
                                     if(!empty($row['file'])){
                                         echo ' <strong><a href="?page=gsk&act=fsk&id_surat='.$row['id_surat'].'">'.$row['file'].'</a></strong>';

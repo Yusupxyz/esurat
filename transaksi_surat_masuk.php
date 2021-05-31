@@ -159,15 +159,15 @@
                             //script untuk mencari data
                             if ($_SESSION['admin']==4){
                                 $query = mysqli_query($config, "SELECT *, tbl_surat_masuk.id_surat as id_surat_masuk FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON tbl_surat_masuk.id_surat=tbl_disposisi.id_surat
-                                                    WHERE tujuan=".$_SESSION['id_user']." AND (isi LIKE '%$cari%' OR no_surat LIKE '%$cari%' 
+                                                    WHERE tujuan=".$_SESSION['id_user']." AND (no_surat LIKE '%$cari%' 
                                                     OR asal_surat LIKE '%$cari%' OR kode LIKE '%$cari%' OR tgl_surat LIKE '%$cari%')  ORDER by tbl_surat_masuk.id_surat DESC LIMIT $curr, $limit");
                             }elseif ($_SESSION['admin']==3){
                                 $query = mysqli_query($config, "SELECT *, tbl_surat_masuk.id_surat as id_surat_masuk FROM tbl_surat_masuk LEFT JOIN tbl_disposisi ON tbl_surat_masuk.id_surat=tbl_disposisi.id_surat 
-                                                    WHERE tujuan_surat=".$_SESSION['id_user']." AND isi LIKE '%$cari%' OR no_surat LIKE '%$cari%' 
+                                                    WHERE tujuan_surat=".$_SESSION['id_user']." AND no_surat LIKE '%$cari%' 
                                                     OR asal_surat LIKE '%$cari%' OR kode LIKE '%$cari%' OR tgl_surat LIKE '%$cari%' ORDER by tbl_disposisi.id_disposisi DESC LIMIT $curr, $limit");
                             }
                             else{
-                                $query = mysqli_query($config, "SELECT *, tbl_surat_masuk.id_surat as id_surat_masuk FROM tbl_surat_masuk WHERE isi LIKE '%$cari%'  OR no_surat LIKE '%$cari%' 
+                                $query = mysqli_query($config, "SELECT *, tbl_surat_masuk.id_surat as id_surat_masuk FROM tbl_surat_masuk WHERE no_surat LIKE '%$cari%' 
                                                     OR asal_surat LIKE '%$cari%' OR kode LIKE '%$cari%' OR tgl_surat LIKE '%$cari%' ORDER by id_surat DESC LIMIT $curr, $limit");
                             }
                             if($query==true && mysqli_num_rows($query) > 0){
@@ -175,7 +175,7 @@
                                 while($row = mysqli_fetch_array($query)){
                                   echo '
                                     <td>'.$row['kode'].'</td>
-                                    <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
+                                    <td><strong>File :</strong>';
 
                                     if(!empty($row['file'])){
                                         echo ' <strong><a href="?page=gsm&act=fsm&id_surat='.$row['id_surat_masuk'].'">'.$row['file'].'</a></strong>';
@@ -302,7 +302,7 @@
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
                                         <th width="10%">Kode</th>
-                                        <th width="30%">Isi Ringkas<br/> File</th>
+                                        <th width="30%">File</th>
                                         <th width="24%">Asal Surat</th>
                                         <th width="18%">No. Surat<br/>Tgl Surat</th>
                                         <th width="18%">Tindakan <span class="right tooltipped" data-position="left" data-tooltip="Atur jumlah data yang ditampilkan"><a class="modal-trigger" href="#modal"><i class="material-icons" style="color: #333;">settings</i></a></span></th>
@@ -375,7 +375,7 @@
                                         $count_disp=mysqli_num_rows($query2);
                                       echo '
                                         <td>'.$row['kode'].'</td>
-                                        <td>'.substr($row['isi'],0,200).'<br/><br/><strong>File :</strong>';
+                                        <td><strong>File :</strong>';
 
                                         if(!empty($row['file'])){
                                             echo ' <strong><a href="?page=gsm&act=fsm&id_surat='.$row['id_surat_masuk'].'">'.$row['file'].'</a></strong>';
