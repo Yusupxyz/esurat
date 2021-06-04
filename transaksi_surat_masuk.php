@@ -31,6 +31,9 @@
                     case 'del':
                         include "hapus_surat_masuk.php";
                         break;
+                    case 'send':
+                        include "send_surat_masuk.php";
+                        break;
                 }
             } else {
                 if ($_SESSION['admin']=='4'){
@@ -223,14 +226,16 @@
                                         echo '<a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat_masuk'].'" target="_blank">
                                             <i class="material-icons">print</i> PRINT</a>';
                                    }elseif ($_SESSION['admin'] == 2){
-                                    echo '<a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat_masuk'].'">
-                                    <i class="material-icons">edit</i> EDIT</a>
+                                    echo '<a class="btn small green waves-effect waves-light" href="?page=tsm&act=send&id_surat='.$row['id_surat_masuk'].'">
+                                    <i class="material-icons">edit</i> KIRIM NOTIF WA</a>
                                     <a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat_masuk'].'" target="_blank">
                                         <i class="material-icons">print</i> PRINT</a>
                                     <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=del&id_surat='.$row['id_surat_masuk'].'">
                                     <i class="material-icons">delete</i> DEL</a>';
                                     }else{
-                                      echo '<a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat_masuk'].'">
+                                      echo '<a class="btn small green waves-effect waves-light" href="?page=tsm&act=send&id_surat='.$row['id_surat_masuk'].'">
+                                      <i class="material-icons">edit</i> KIRIM NOTIF WA</a>
+                                      <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat_masuk'].'">
                                                 <i class="material-icons">edit</i> EDIT</a>
                                             <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Pilih Disp untuk menambahkan Disposisi Surat" href="?page=tsm&act=disp&id_surat='.$row['id_surat_masuk'].'">
                                                 <i class="material-icons">description</i> DISP</a>
@@ -422,7 +427,9 @@
                                             echo '<a class="btn small yellow darken-3 waves-effect waves-light" href="?page=ctk&id_surat='.$row['id_surat_masuk'].'" target="_blank">
                                                 <i class="material-icons">print</i> PRINT</a>';
                                         } elseif ($_SESSION['admin'] == 2){
-                                            echo '<a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat_masuk'].'">
+                                            echo '<a class="btn small green waves-effect waves-light" href="?page=tsm&act=send&id_surat='.$row['id_surat_masuk'].'">
+                                            <i class="material-icons">edit</i> KIRIM NOTIF WA</a>
+                                            <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat_masuk'].'">
                                             <i class="material-icons">edit</i> EDIT</a>';
                                             if ($count_disp>0){
                                                 echo'
@@ -442,7 +449,9 @@
                                                 <i class="material-icons">print</i> PRINT</a>';
                                             }
                                         }else {
-                                          echo '<a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat_masuk'].'">
+                                          echo '<a class="btn small green waves-effect waves-light" href="?page=tsm&act=send&id_surat='.$row['id_surat_masuk'].'">
+                                          <i class="material-icons">edit</i> KIRIM NOTIF WA</a>
+                                          <a class="btn small blue waves-effect waves-light" href="?page=tsm&act=edit&id_surat='.$row['id_surat_masuk'].'">
                                                     <i class="material-icons">edit</i> EDIT</a>
                                                 <a class="btn small light-green waves-effect waves-light tooltipped" data-position="left" data-tooltip="Pilih Disp untuk menambahkan Disposisi Surat" href="?page=tsm&act=disp&id_surat='.$row['id_surat_masuk'].'">
                                                     <i class="material-icons">description</i> DISP</a>
