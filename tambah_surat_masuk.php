@@ -89,9 +89,8 @@
                                                 if($ukuran < 2500000){
 
                                                     move_uploaded_file($_FILES['file']['tmp_name'], $target_dir.$nfile);
-
                                                     $query = mysqli_query($config, "INSERT INTO tbl_surat_masuk(no_surat,asal_surat,tujuan_surat,kode,tgl_surat,
-                                                        tgl_diterima,file,keterangan,jenis_susat,id_user)
+                                                        tgl_diterima,file,keterangan,jenis_surat,id_user)
                                                             VALUES('$no_surat','$asal_surat','$tujuan_surat','$nkode','$tgl_surat',NOW(),'$nfile','$keterangan','$jenis','$id_user')");
 
                                                     if($query == true){
@@ -100,7 +99,7 @@
                                                         die();
                                                     } else {
                                                         $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                        echo '<script language="javascript">window.history.back();</script>';
+                                                        // echo '<script language="javascript">window.history.back();</script>';
                                                     }
                                                 } else {
                                                     $_SESSION['errSize'] = 'Ukuran file yang diupload terlalu besar!';
@@ -122,7 +121,7 @@
                                                 die();
                                             } else {
                                                 $_SESSION['errQ'] = 'ERROR! Ada masalah dengan query';
-                                                echo '<script language="javascript">window.history.back();</script>';
+                                                // echo '<script language="javascript">window.history.back();</script>';
                                             }
                                         }
                                     }

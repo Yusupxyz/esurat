@@ -149,7 +149,7 @@
                         <table class="bordered" id="tbl">
                             <thead class="blue lighten-4" id="head">
                                 <tr>
-                                    <th width="10%">Kode</th>
+                                    <th width="10%">No.</th>
                                     <th width="30%">Isi Ringkas<br/> File</th>
                                     <th width="24%">Asal Surat</th>
                                     <th width="18%">No. Surat<br/>Tgl Surat</th>
@@ -177,7 +177,7 @@
                                 $no = 1;
                                 while($row = mysqli_fetch_array($query)){
                                   echo '
-                                    <td>'.$row['kode'].'</td>
+                                    <td>'.$no++.'</td>
                                     <td><strong>File :</strong>';
 
                                     if(!empty($row['file'])){
@@ -306,7 +306,7 @@
                             <table class="bordered" id="tbl">
                                 <thead class="blue lighten-4" id="head">
                                     <tr>
-                                        <th width="10%">Kode</th>
+                                        <th width="10%">No.</th>
                                         <th width="30%">File</th>
                                         <th width="24%">Asal Surat</th>
                                         <th width="18%">No. Surat<br/>Tgl Surat</th>
@@ -379,7 +379,7 @@
                                         $query2 = mysqli_query($config, "SELECT * FROM tbl_disposisi WHERE id_surat='".$row['id_surat_masuk']."'");
                                         $count_disp=mysqli_num_rows($query2);
                                       echo '
-                                        <td>'.$row['kode'].'</td>
+                                        <td>'.$no++.'</td>
                                         <td><strong>File :</strong>';
 
                                         if(!empty($row['file'])){
