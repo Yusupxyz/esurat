@@ -247,7 +247,7 @@
                                                     unset($_SESSION['namains']);
                                                 }
                                             ?>
-                                        <label for="nama">Nama Fakultas</label>
+                                        <label for="nama">Nama Instansi</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">work</i>
@@ -259,7 +259,7 @@
                                                     unset($_SESSION['institusi']);
                                                 }
                                             ?>
-                                        <label for="institusi">Nama Universitas</label>
+                                        <label for="institusi">Kota/Kabupaten</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">assistant_photo</i>
@@ -271,7 +271,7 @@
                                                     unset($_SESSION['status']);
                                                 }
                                             ?>
-                                        <label for="status">Kementerian</label>
+                                        <label for="status">Provinsi</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">account_box</i>
@@ -283,7 +283,7 @@
                                                     unset($_SESSION['kepala']);
                                                 }
                                             ?>
-                                        <label for="kepala">Nama Dekan</label>
+                                        <label for="kepala">Nama Kepala Dinas</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">place</i>
@@ -307,7 +307,7 @@
                                                     unset($_SESSION['nipkepala']);
                                                 }
                                             ?>
-                                        <label for="nip">NIP Dekan</label>
+                                        <label for="nip">NIP Kepala Dinas</label>
                                     </div>
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix md-prefix">language</i>
