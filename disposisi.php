@@ -127,9 +127,9 @@
                                                 <th width="4%">No</th>
                                                 <th width="20%">Tujuan Disposisi</th>
                                                 <th width="28%">Isi Disposisi</th>
-                                                <th width="11%">Sifat<br/>Batas Waktu</th>
-                                                <th width="19%">Status Notifikasi WA</th>
-                                                <th width="18%">Tindakan</th>
+                                                <th width="11%">Sifat<br/>Batas Waktu</th>';
+                                                // <th width="19%">Status Notifikasi WA</th>
+                                            echo    '<th width="18%">Tindakan</th>
                                             </tr>
                                         </thead>
 
@@ -179,8 +179,9 @@
                                                     echo '
 
                                                     <td>'.$row['sifat'].'<br/>'.$d." ".$nm." ".$y.'</td>
-                                                    <td>'.$row['status_wa'].'</td>
+                                                    
                                                     <td>';
+                                                    // <td>'.$row['status_wa'].'</td>
                                                     // if ($row['status_wa']!='Terkirim'){
                                                     //     if ($row['status_wa']!='Tertunda'){
                                                     //     echo '<a class="btn small green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=send&id_disposisi='.$row['id_disposisi'].'">

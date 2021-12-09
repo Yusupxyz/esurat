@@ -210,7 +210,7 @@
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data klasifikasi kode klasifikasi">
                             <i class="material-icons prefix md-prefix">bookmark</i><label>Kode Klasifikasi</label><br/>
                             <div class="input-field col s11 right">
-                                <select class="validate" name="kode" id="kode" onchange="getval3(this);" required>
+                                <select class="validate" name="kode" id="kode" onchange="" required>
                                     <option disabled selected> Pilih </option>
                                     <?php 
                                     $sql=mysqli_query($config,"SELECT * FROM tbl_klasifikasi");
@@ -248,7 +248,7 @@
                             <div class="input-field col s11 right">
                             
 
-                                <select class="validate" name="asal_surat2" id="asal_surat2" onchange="getval2(this);" required="true">
+                                <select class="validate" name="asal_surat2" id="asal_surat2" onchange="" required="true">
                                     <option disabled selected> Pilih </option>
                                     <?php
                                         $results = mysqli_query($config, "SELECT * FROM tbl_kode_internal");
@@ -266,7 +266,7 @@
                                 }
                             ?>
                         </div>
-                        <div class="input-field col s6 " id="no2" style="display:none">
+                        <!-- <div class="input-field col s6 " id="" style="display:none">
                             <i class="material-icons prefix md-prefix ">looks_two</i>
                             <input id="no_surat1" type="text" class="validate" name="no_surat1" maxlength="5" style="width: 50px;" required>  
                             &ensp;/
@@ -289,7 +289,7 @@
                                     }
                                 ?>
                             <label for="no_surat">Nomor Surat</label>
-                        </div>
+                        </div> -->
                         <div class="input-field col s6" id="no1">
                             <i class="material-icons prefix md-prefix">looks_two</i>
                             <input id="no_surat" type="text" class="validate" name="no_surat" required>

@@ -106,24 +106,24 @@ $(document).ready(function(){
         if(sel.value=="internal"){
             document.getElementById("asal1").style.display = "none";
             document.getElementById("asal2").style.display = "block";
-            document.getElementById("no2").style.display = "block";
-            document.getElementById("no1").style.display = "none";
-            document.getElementById("no_surat").value = "";
-            document.getElementById("no_surat").required = false;
-            document.getElementById("no_surat1").required = true;
-            document.getElementById("no_surat3").required = true;
+            // document.getElementById("no2").style.display = "block";
+            // document.getElementById("no1").style.display = "none";
+            // document.getElementById("no_surat").value = "";
+            // document.getElementById("no_surat").required = false;
+            // document.getElementById("no_surat1").required = true;
+            // document.getElementById("no_surat3").required = true;
             document.getElementById("asal_surat1").required = false;
             document.getElementById("asal_surat2").required = true;
 
         }else{
             document.getElementById("asal1").style.display = "block";
             document.getElementById("asal2").style.display = "none";
-            document.getElementById("no2").style.display = "none";
-            document.getElementById("no1").style.display = "block";
-            document.getElementById("no_surat1").value = "";
-            document.getElementById("no_surat").required = true;
-            document.getElementById("no_surat1").required = false;
-            document.getElementById("no_surat3").required = false;
+            // document.getElementById("no2").style.display = "none";
+            // document.getElementById("no1").style.display = "block";
+            // document.getElementById("no_surat1").value = "";
+            // document.getElementById("no_surat").required = true;
+            // document.getElementById("no_surat1").required = false;
+            // document.getElementById("no_surat3").required = false;
             document.getElementById("asal_surat2").required = false;
             document.getElementById("asal_surat1").required = true;
         }

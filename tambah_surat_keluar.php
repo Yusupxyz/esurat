@@ -175,7 +175,7 @@
                         <div class="input-field col s6 tooltipped" data-position="top" data-tooltip="Diambil dari data klasifikasi kode klasifikasi">
                             <i class="material-icons prefix md-prefix">bookmark</i><label>Kode Klasifikasi</label><br/>
                             <div class="input-field col s11 right">
-                                <select class="validate" name="kode" onchange="getval4(this);" required>
+                                <select class="validate" name="kode" onchange="" required>
                                     <option disabled selected> Pilih </option>
                                     <?php 
                                     $sql=mysqli_query($config,"SELECT * FROM tbl_klasifikasi");
@@ -210,12 +210,12 @@
                         <div class="input-field col s6">
                             <i class="material-icons prefix md-prefix">looks_two</i>
                             <?php 
-                                $year=date('Y');
-                                // echo "SELECT count(*) FROM tbl_surat_keluar WHERE year(tgl_surat)='$year'";
-                                $count = mysqli_query($config, "SELECT count(*) FROM tbl_surat_keluar WHERE year(tgl_surat)='$year'")->fetch_row()[0]+1;
-                                $no_surat=$count."/UN24.7/".$year;
+                                // $year=date('Y');
+                                // // echo "SELECT count(*) FROM tbl_surat_keluar WHERE year(tgl_surat)='$year'";
+                                // $count = mysqli_query($config, "SELECT count(*) FROM tbl_surat_keluar WHERE year(tgl_surat)='$year'")->fetch_row()[0]+1;
+                                // $no_surat=$count."/UN24.7/".$year;
                             ?>
-                            <input id="no_surat" type="text" class="validate" name="no_surat" value="<?= $no_surat?>" readonly>
+                            <input id="no_surat" type="text" class="validate" name="no_surat" value="<?= $no_surat?>" >
                                 <?php
                                     if(isset($_SESSION['no_suratk'])){
                                         $no_suratk = $_SESSION['no_suratk'];
