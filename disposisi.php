@@ -181,15 +181,15 @@
                                                     <td>'.$row['sifat'].'<br/>'.$d." ".$nm." ".$y.'</td>
                                                     <td>'.$row['status_wa'].'</td>
                                                     <td>';
-                                                    if ($row['status_wa']!='Terkirim'){
-                                                        if ($row['status_wa']!='Tertunda'){
-                                                        echo '<a class="btn small green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=send&id_disposisi='.$row['id_disposisi'].'">
-                                                            <i class="material-icons">send</i> KIRIM NOTIF WA</a>';
-                                                        }else{
-                                                            echo '<a class="btn small green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=cek&id_disposisi='.$row['id_disposisi'].'">
-                                                            <i class="material-icons">refresh</i> CEK STATUS</a>';  
-                                                        }
-                                                    }
+                                                    // if ($row['status_wa']!='Terkirim'){
+                                                    //     if ($row['status_wa']!='Tertunda'){
+                                                    //     echo '<a class="btn small green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=send&id_disposisi='.$row['id_disposisi'].'">
+                                                    //         <i class="material-icons">send</i> KIRIM NOTIF WA</a>';
+                                                    //     }else{
+                                                    //         echo '<a class="btn small green waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=cek&id_disposisi='.$row['id_disposisi'].'">
+                                                    //         <i class="material-icons">refresh</i> CEK STATUS</a>';  
+                                                    //     }
+                                                    // }
                                                     echo '<a class="btn small blue waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=edit&id_disposisi='.$row['id_disposisi'].'">
                                                             <i class="material-icons">edit</i> EDIT</a>
                                                         <a class="btn small deep-orange waves-effect waves-light" href="?page=tsm&act=disp&id_surat='.$id_surat.'&sub=del&id_disposisi='.$row['id_disposisi'].'"><i class="material-icons">delete</i> DEL</a>
