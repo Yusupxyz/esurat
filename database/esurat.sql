@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2021 at 04:31 PM
+-- Generation Time: Dec 09, 2021 at 08:57 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -59,7 +59,7 @@ INSERT INTO `tbl_hak_user` (`id_hak_akses`, `hak_akses`) VALUES
 (1, 'Super Admin	\r\n'),
 (2, 'Staff TU'),
 (3, 'Pejabat Disposisi'),
-(4, 'Pegawai Fakultas Hukum');
+(4, 'Pegawai Dinas Komunikasi Informatika Persandian dan Statistik');
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,7 @@ CREATE TABLE `tbl_instansi` (
 --
 
 INSERT INTO `tbl_instansi` (`id_instansi`, `institusi`, `nama`, `status`, `alamat`, `kepala`, `nip`, `website`, `email`, `logo`, `id_user`) VALUES
-(1, 'Universitas Palangka Raya', 'Fakultas Hukum', 'Kementerian Kebudayaan dan Pendidikan', 'Jl. Yos Sudarso, Palangka, Kec. Jekan Raya, Kota Palangka Raya, Kalimantan Tengah 74874', 'Dr Suriansyah Murhaini SH., MH', '-', 'https://www.upr.ac.id/', 'admin@admin.com', 'logo.png', 1);
+(1, 'Palangka Raya', 'Dinas Komunikasi Informatika Persandian dan Statistik', 'Provinsi Kalimantan Tengah', 'JL. Tjilik Riwut Km.3,5 No. 18A', 'Agus Siswadi', '-', 'https://diskominfo.kalteng.go.id/', 'diskominfo@kalteng.go.id', '10032020113816_1_LOGOKOMINFO.png', 1);
 
 -- --------------------------------------------------------
 
@@ -107,7 +107,8 @@ CREATE TABLE `tbl_klasifikasi` (
 --
 
 INSERT INTO `tbl_klasifikasi` (`id_klasifikasi`, `kode`, `nama`, `uraian`, `id_user`) VALUES
-(3, 'AK', 'Akreditasi', 'Akreditasi Fakultas', 1);
+(3, '000', 'Umum', 'Surat Umum', 1),
+(4, '100', 'Pemerintahan', 'Pemerintahan\r\n', 1);
 
 -- --------------------------------------------------------
 
@@ -127,8 +128,7 @@ CREATE TABLE `tbl_kode_internal` (
 --
 
 INSERT INTO `tbl_kode_internal` (`id_kode`, `unit_kerja`, `kode`, `id_user`) VALUES
-(1, 'Rektor / Wakil Rektor', 'UN24', 1),
-(3, 'Biro Umum dan Keuangan', 'UN24.1', 1);
+(1, 'Kode Jabatan Deputi Tata Laksana', 'IV', 1);
 
 -- --------------------------------------------------------
 
@@ -214,13 +214,10 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `nip`, `admin`, `nohp`, `jabatan`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Wandy Supriadi', '-', 1, '082353323944', 'Developer'),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Aditya', '-', 1, '085750251147', 'Developer'),
 (5, 'staf1', '827ccb0eea8a706c4c34a16891f84e7b', 'Yusup Hidayat', '-', 2, '081254738486', 'Staf'),
-(9, 'dekan_hukum', '827ccb0eea8a706c4c34a16891f84e7b', 'Dr Suriansyah Murhaini SH., MH', '-', 3, '6283143206955', 'Dekan'),
-(10, 'kasubag_uk', '827ccb0eea8a706c4c34a16891f84e7b', 'Yulinde, S.Hut', '197107152001122003', 4, '-', 'Kasubag Umum dan Kepegawaian'),
-(12, 'wakil_d1', '827ccb0eea8a706c4c34a16891f84e7b', 'A', '-', 3, '081254738486', 'Wakil Dekan 1'),
-(13, 'wakil_d2', '827ccb0eea8a706c4c34a16891f84e7b', 'B', '-', 3, '081254738486', 'Wakil Dekan 2'),
-(14, 'wakil_d3', '827ccb0eea8a706c4c34a16891f84e7b', 'C', '-', 3, '081254738486', 'Wakil Dekan 3');
+(10, 'kasubag_uk', '21232f297a57a5a743894a0e4a801fc3', 'Yulinde, S.Hut', '197107152001122003', 3, '-', 'Kasubag Umum dan Kepegawaian'),
+(15, 'andika', '21232f297a57a5a743894a0e4a801fc3', 'Andika Wahyu, SH', '197107152001122003', 4, '081254738486', 'Pegawai');
 
 --
 -- Indexes for dumped tables
@@ -300,7 +297,7 @@ ALTER TABLE `tbl_hak_user`
 -- AUTO_INCREMENT for table `tbl_klasifikasi`
 --
 ALTER TABLE `tbl_klasifikasi`
-  MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_klasifikasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_kode_internal`
@@ -312,7 +309,7 @@ ALTER TABLE `tbl_kode_internal`
 -- AUTO_INCREMENT for table `tbl_surat_keluar`
 --
 ALTER TABLE `tbl_surat_keluar`
-  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_surat` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_surat_masuk`
@@ -324,7 +321,7 @@ ALTER TABLE `tbl_surat_masuk`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_user` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
